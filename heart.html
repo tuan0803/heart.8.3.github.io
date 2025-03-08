@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="style.css" />
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>I Love You</title>
     <meta name="Generator" content="EditPlus" />
     <meta name="Author" content="" />
@@ -109,6 +110,12 @@
         }
         100% {
           transform: translate(2px, 2px);
+        }
+      }
+      @media (max-width: 768px) {
+        .message-container {
+          font-size: 18px;
+          width: 90%;
         }
       }
     </style>
@@ -423,6 +430,17 @@
           render();
         }, 10);
       })(document.getElementById("pinkboard"));
+
+      const canvas = document.getElementById("pinkboard");
+      const ctx = canvas.getContext("2d");
+
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+
+      window.addEventListener("resize", resizeCanvas);
+      resizeCanvas();
     </script>
   </body>
 </html>
