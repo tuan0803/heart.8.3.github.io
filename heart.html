@@ -127,10 +127,30 @@
     </div>
     <canvas id="pinkboard"></canvas>
     <div class="background"></div>
+    <audio
+      id="myAudio"
+      src="/public/TikSave.io_7473330770518560018.mp3"
+      loop
+    ></audio>
     <script>
       /*
        * Settings
        */
+      document.addEventListener("DOMContentLoaded", () => {
+        const audio = document.getElementById("myAudio");
+
+        // Tự động phát (nếu bị chặn, sẽ yêu cầu click)
+        audio.play().catch(() => {
+          console.log("Autoplay bị chặn, yêu cầu người dùng click.");
+          document.addEventListener(
+            "click",
+            () => {
+              audio.play();
+            },
+            { once: true }
+          );
+        });
+      });
       fetch("messages.txt")
         .then((response) => response.text())
         .then((text) => {
